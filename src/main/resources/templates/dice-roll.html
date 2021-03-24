@@ -9,7 +9,18 @@
 <br>
 <h6>Dice roll <span th:text="${randomNumber}">1</span></h6>
 <h2 th:text="${message}"></h2>
-<
+<br>
+<br>
+<h4>Guess another number</h4>
+<ul>
+    <li><a th:href="@{/roll-dice/1}" >1</a></li>
+    <li><a th:href="@{/roll-dice/2}" >2</a></li>
+    <li><a th:href="@{/roll-dice/3}" >3</a></li>
+    <li><a th:href="@{/roll-dice/4}" >4</a></li>
+    <li><a th:href="@{/roll-dice/5}" >5</a></li>
+    <li><a th:href="@{/roll-dice/6}" >6</a></li>
 
-</body>
-</html>
+    </ul>
+
+    </body>
+    </html>
