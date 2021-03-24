@@ -7,15 +7,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class diceRollController {
+
+
     @GetMapping("/roll-dice")
-    public String sayHello(@PathVariable String name, Model model) {
-        model.addAttribute("name", name);
+    public String sayHello() {
         return "roll-dice";
     }
 
     @GetMapping("/roll-dice/{n}")
     public String computerRoll(@PathVariable int n, Model model) {
-        model.addAttribute("n", n);
-        return "roll-dice";
+         int randomNumber = (int) Math.floor(Math.random() * 5) + 1;
+         String message;
+        if(n==randomNumber){
+            message="You guessed right!";
+        }else{
+            message="You guessed wrong!";
+        }
+
+model.addAttribute("randomNumber",randomNumber);
+        model.addAttribute("n",n);
+        model.addAttribute("message",message);
+
+
+        return "dice-roll";
     }
 }
