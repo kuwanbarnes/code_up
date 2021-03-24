@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
-<nav th;fragment="main-nav">
+
+<nav th:fragment="mainNav" class="nav navbar">
     <ul>
-        <li th: if ="admin            "
+        <li><a href="/roll-dice">New Game</a></li>
+        <li><a href="#">About</a></li>
+<!--        <li><a href="#" th:text="${day}"></a></li>-->
     </ul>
 </nav>
+
+<h2>this doesn't render</h2>
 
 </body>
 </html>

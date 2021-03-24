@@ -5,6 +5,8 @@
     <title>Title</title>
 </head>
 <body>
+<nav th:replace="fragments/navbar :: mainNav">
+</nav>
 <h6>Your guess<span th:text="${n}">1</span> </h6>
 <br>
 <h6>Dice roll <span th:text="${randomNumber}">1</span></h6>
