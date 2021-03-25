@@ -4,15 +4,24 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/partials ::head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h6>View Post</h6>
-<div th:each="post : ${postList}">
-    <p th:text="${post.title}" />
-</div>
+<h6>View individual Post</h6>
+<main class="container">
+    <div class="post">
 
+        <h1 th:text="${post.title}"></h1>
+        <p th:text="${post.body}"></p>
+        <form action="/posts" method="post">
+            <label>
+                <input type="text" value=${post.title} >
+            </label>
+            <button type="submit" name="delete" id= "delete" >delete</button>
+        </form>
+    </div>
+</main>
 </body>
 </html>
