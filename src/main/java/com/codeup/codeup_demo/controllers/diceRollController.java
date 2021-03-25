@@ -15,8 +15,9 @@ public class diceRollController {
     }
 
     @GetMapping("/roll-dice/{n}")
-    public String computerRoll(@PathVariable int n, Model model) {
+    public String ShowRoll(@PathVariable int n, Model model) {
          int randomNumber = (int) Math.floor(Math.random() * 5) + 1;
+//         model.addAttribute("isCorrect",randomNumber==n);
          String message;
         if(n==randomNumber){
             message="You guessed right!";

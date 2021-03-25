@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/partials :: head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -25,4 +25,7 @@
     </ul>
 
     </body>
+<footer th:replace="fragments/partials :: footer">
+
+</footer>
     </html>
