@@ -10,15 +10,16 @@
 </head>
 <body>
 <h6>View individual Post</h6>
+
 <main class="container">
     <div class="post">
 
-        <h1 th:text="${post.title}"></h1>
-        <p th:text="${post.body}"></p>
         <form action="/posts" method="post">
-            <label>
-                <input type="text" value=${post.title} >
-            </label>
+
+            <h1 th:text="${post.title}"></h1>
+            <p th:text="${post.body}"></p>
+            <p th:text="${post.id}" hidden></p>
+
             <button type="submit" name="delete" id= "delete" >delete</button>
         </form>
     </div>
