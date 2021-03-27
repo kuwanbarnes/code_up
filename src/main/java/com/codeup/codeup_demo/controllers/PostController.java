@@ -64,18 +64,18 @@ public class PostController {
     }
 
     @PostMapping("/posts/delete")
-    public ModelAndView DeleteUser(@ModelAttribute("postID") Post
+    public String DeleteUser(@ModelAttribute("postID") Post
                                            post) {
-        ModelAndView mav = new ModelAndView();
+
 
         System.err.println("Deleting:");
         System.err.println("getId " + post.getId());
-        System.err.println("getTitle " + post.getTitle();
-        System.err.println("getCourse " + post.getBody();
-        postDAO.d(Customers.getId());
-        customersService.listAllCustomers();
-        mav.setViewName("redirect:/" + MAIN_VIEW);
-        return mav;
+        System.err.println("getTitle " + post.getTitle());
+        System.err.println("getCourse " + post.getBody());
+        postDAO.deleteById(post.getId());
+        postDAO.findAll();
+
+        return "posts/index";
 
     }
 
