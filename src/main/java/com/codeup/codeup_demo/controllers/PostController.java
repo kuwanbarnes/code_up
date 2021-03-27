@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,4 +62,21 @@ public class PostController {
         return "you will submit you post here";
         //code
     }
+
+    @PostMapping("/posts/delete")
+    public ModelAndView DeleteUser(@ModelAttribute("postID") Post
+                                           post) {
+        ModelAndView mav = new ModelAndView();
+
+        System.err.println("Deleting:");
+        System.err.println("getId " + post.getId());
+        System.err.println("getTitle " + post.getTitle();
+        System.err.println("getCourse " + post.getBody();
+        postDAO.d(Customers.getId());
+        customersService.listAllCustomers();
+        mav.setViewName("redirect:/" + MAIN_VIEW);
+        return mav;
+
+    }
+
 }
