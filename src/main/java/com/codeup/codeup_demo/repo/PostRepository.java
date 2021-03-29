@@ -23,6 +23,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     @Query("from Post post where post.id in :ids ")
     List<Post>deleteById(@Param("postId") int ids);
+
+    @Query("from Post post where post.id in :ids ")
+    List<Post>(@Param("postId") int ids);
 //
 //    @Query("from Post post where post.title like %:title%")
 //    List<Post>findByTitle(@Modifying(flushAutomatically = false));
