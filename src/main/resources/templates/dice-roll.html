@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/partials :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: mainNav">
+</nav>
+<h6>Your guess<span th:text="${n}">1</span> </h6>
+<br>
+<h6>Dice roll <span th:text="${randomNumber}">1</span></h6>
+<h2 th:text="${message}"></h2>
+<br>
+<br>
+<h4>Guess another number</h4>
+
+<ul>
+    <li><a th:href="@{/roll-dice/1}" >1</a></li>
+    <li><a th:href="@{/roll-dice/2}" >2</a></li>
+    <li><a th:href="@{/roll-dice/3}" >3</a></li>
+    <li><a th:href="@{/roll-dice/4}" >4</a></li>
+    <li><a th:href="@{/roll-dice/5}" >5</a></li>
+    <li><a th:href="@{/roll-dice/6}" >6</a></li>
+
+    </ul>
+<footer th:replace="fragments/partials :: footer">
+
+</footer>
+    </body>
+
+    </html>
