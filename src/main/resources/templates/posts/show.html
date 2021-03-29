@@ -6,7 +6,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/partials ::head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Post</title>
 </head>
 <body>
 <h6>View individual Post</h6>
@@ -20,7 +20,9 @@
             <p th:text="${post.body}"></p>
             <p th:text="${post.id}" hidden></p>
 
-            <button type="submit" name="delete" id= "delete" >delete</button>
+            <button type="submit" name="delete" id= "delete"  >delete</button>
+            <button type="submit" name="edit" id= "edit"  >delete</button>
+
         </form>
     </div>
 </main>
