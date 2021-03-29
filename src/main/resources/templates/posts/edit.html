@@ -1,0 +1,35 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/partials ::head">
+    <meta charset="UTF-8">
+    <title>Update Ad</title>
+</head>
+<body>
+<h6>View individual Post</h6>
+
+<main class="container">
+    <div class="post">
+
+
+        <form th:action="${'/posts/'+ oldPost.id +'/update'}" method="post">
+
+            <input type="text" name ="post_title" id="title" th:value="${oldPost.title}">
+            <input type="text" name ="post_body" id="body" th:value="${oldPost.body}">
+
+<!--            <label for="post.id">post.ID</label>-->
+<!--            <input type="text" name ="post.id" id="post.id">-->
+<!--            <p th:text="${post.body}"></p>-->
+<!--            <p th:text="${post.id}" hidden></p>-->
+
+
+            <button type="submit" name="edit" id= "edit"  >edit</button>
+
+        </form>
+    </div>
+</main>
+</body>
+</html>

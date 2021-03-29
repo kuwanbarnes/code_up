@@ -12,20 +12,20 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    List<Post>findByTitleEquals(String titleToSearchFor);
-    List<Post>findById(int id);
+//    List<Post>findByTitleEquals(String titleToSearchFor);
+//    List<Post>findById(int id);
 
-    @Query("from Post post where post.body like %:term%")
-    List<Post> searchByBodyLike(@Param("term") String term);
+//    @Query("from Post post where post.body like %:term%")
+//    List<Post> searchByBodyLike(@Param("term") String term);
+//
+//    @Query("from Post post where post.title like %:title%")
+//    List<Post>deleteByTitle(@Param("title") String title);
 
-    @Query("from Post post where post.title like %:title%")
-    List<Post>deleteByTitle(@Param("title") String title);
+//    @Query("from Post post where post.id in :ids ")
+//    List<Post>deleteById(@Param("postId") int ids);
 
-    @Query("from Post post where post.id in :ids ")
-    List<Post>deleteById(@Param("postId") int ids);
-
-    @Query("from Post post where post.id in :ids ")
-    List<Post>(@Param("postId") int ids);
+//    @Query("from Post post where post.id in :ids ")
+//    List<Post>(@Param("postId") int ids);
 //
 //    @Query("from Post post where post.title like %:title%")
 //    List<Post>findByTitle(@Modifying(flushAutomatically = false));
