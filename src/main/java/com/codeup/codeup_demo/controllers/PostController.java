@@ -1,7 +1,9 @@
 package com.codeup.codeup_demo.controllers;
 
 import com.codeup.codeup_demo.models.Post;
+import com.codeup.codeup_demo.models.User;
 import com.codeup.codeup_demo.repo.PostRepository;
+import com.codeup.codeup_demo.repo.UserRepo;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +22,10 @@ public class PostController {
 //        this.postDao = postDao;
 //    }
     private final PostRepository postDAO;
-
-    public PostController(PostRepository postDAO){
+private  final UserRepo userDAO;
+    public PostController(PostRepository postDAO,UserRepo userDAO){
         this.postDAO = postDAO;
+        this.userDAO= userDAO;
     }
 
 //    List<Post> post =new ArrayList<>();
@@ -48,25 +51,28 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
-    public String postViewForm() {
-        return "the form for creating a post";
-    }
-    @PostMapping("/posts/create")
 
-    public String createPostForm(@RequestParam("post_title")String title,@RequestParam("post_body")String body) {
-        Post  tosave = new Post(title,body);
-        postDAO.save(tosave);
+    public String postViewForm() {
         return "posts/create";
     }
+    @PostMapping("/posts/create")
+ @ResponseBody
+    public String createPostForm(@RequestParam("post_title")String title,@RequestParam("post_body")String body,@PathVariable Long id) {
 
-    @GetMapping(path = "/post/{id}/update")
+        User user= userDAO.getOne(id);
+        Post  tosave = new Post(title,body);
+        tosave.setOwner(user);
+        postDAO.save(tosave);
+        return "post created";
+    }
+
+    @GetMapping(path = "/posts/{id}/update")
     public String updatePost(@PathVariable Long id ,Model model){
         Post postfromdb=postDAO.getOne(id);
         model.addAttribute("oldPost",postfromdb);
         return "posts/edit";
     }
-    @PostMapping(path = "/post/{id}/update")
+    @PostMapping(path = "/posts/{id}/update")
     @ResponseBody
         public String updatePostForm(@PathVariable Long id ,@RequestParam("post_title")String title,@RequestParam("post_body")String body) {
             Post  tosave = new Post(id,title,body);
@@ -78,9 +84,9 @@ public class PostController {
 
     @PostMapping("/posts/{id}/delete")
     @ResponseBody
-    public String DeletePost(@PathVariable long id) {
+    public String DeletePost(@PathVariable Long id) {
         postDAO.deleteById(id);
-        return "Ypu delete post";
+        return "You delete post";
 
     }
 

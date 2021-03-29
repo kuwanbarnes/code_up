@@ -15,13 +15,13 @@
     <div class="post">
 
 
-        <form action="${'/posts/'+ id +' update'}" method="post">
+        <form th:action="${'/posts/'+ oldPost.id +'/update'}" method="post">
 
-            <input type="text" name ="post._title" id="title" th:value="${oldPost.title}">
+            <input type="text" name ="post_title" id="title" th:value="${oldPost.title}">
             <input type="text" name ="post_body" id="body" th:value="${oldPost.body}">
 
-            <label for="post.id">post.ID</label>
-            <input type="text" name ="post.id" id="post.id">
+<!--            <label for="post.id">post.ID</label>-->
+<!--            <input type="text" name ="post.id" id="post.id">-->
 <!--            <p th:text="${post.body}"></p>-->
 <!--            <p th:text="${post.id}" hidden></p>-->
 

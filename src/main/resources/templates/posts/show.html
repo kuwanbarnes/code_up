@@ -18,13 +18,15 @@
 
                 <h1 th:text="${post.title}"></h1>
                 <p th:text="${post.body}"></p>
-                <p th:text="${post.id}" hidden></p>
-        <form th:action="${'/post/'+post.id+'/delete'}" method="POST">
-            <button type="submit" name="delete" id= "delete" th:value="${post.id}"  >delete</button>
+        <p>Contact me at <span th:text="${post.owner.email}"></span></p>
+    </div>
+    </div>
+        <form th:action="${'/posts/'+ post.id +'/delete'}" method="POST">
+            <button type="submit"  value="delete post" >delete</button>
 
 
         </form>
-    </div>
+
 </main>
 </body>
 </html>
