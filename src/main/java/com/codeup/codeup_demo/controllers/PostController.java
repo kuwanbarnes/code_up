@@ -57,9 +57,9 @@ private  final UserRepo userDAO;
     }
     @PostMapping("/posts/create")
  @ResponseBody
-    public String createPostForm(@RequestParam("post_title")String title,@RequestParam("post_body")String body,@PathVariable Long id) {
+    public String createPostForm(@RequestParam("post_title")String title,@RequestParam("post_body")String body) {
 
-        User user= userDAO.getOne(id);
+        User user= userDAO.getOne(2L);
         Post  tosave = new Post(title,body);
         tosave.setOwner(user);
         postDAO.save(tosave);
