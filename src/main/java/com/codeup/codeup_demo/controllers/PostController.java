@@ -35,18 +35,15 @@ public class PostController {
     }
     @PostMapping("/posts")
     public String index(Model model) {
-
         List<Post> postFromDb= postDAO.findAll();
-        List<Post> deletePostFromDb= postDAO.deleteByTitle("hello");
         model.addAttribute("posts",postFromDb);
-        model.addAttribute("delete",deletePostFromDb);
+
         return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
-    public String individualPost(@PathVariable int id, Model model) {
-        List<Post> postFromDb= postDAO.findById(id);
-        model.addAttribute("post",new Post("ipad","like new"));
+    public String showOnePost(@PathVariable Long id, Model vModel){
+        vModel.addAttribute("post", postDAO.getOne(id));
         return "posts/show";
     }
 
@@ -55,27 +52,35 @@ public class PostController {
     public String postViewForm() {
         return "the form for creating a post";
     }
+    @PostMapping("/posts/create")
 
-    @PostMapping(path = "/post/create")
-    @ResponseBody
-    public String createPost() {
-        return "you will submit you post here";
-        //code
+    public String createPostForm(@RequestParam("post_title")String title,@RequestParam("post_body")String body) {
+        Post  tosave = new Post(title,body);
+        postDAO.save(tosave);
+        return "posts/create";
     }
 
-    @PostMapping("/posts/delete")
-    public String DeleteUser(@ModelAttribute("postID") Post
-                                           post) {
+    @GetMapping(path = "/post/{id}/update")
+    public String updatePost(@PathVariable Long id ,Model model){
+        Post postfromdb=postDAO.getOne(id);
+        model.addAttribute("oldPost",postfromdb);
+        return "posts/edit";
+    }
+    @PostMapping(path = "/post/{id}/update")
+    @ResponseBody
+        public String updatePostForm(@PathVariable Long id ,@RequestParam("post_title")String title,@RequestParam("post_body")String body) {
+            Post  tosave = new Post(id,title,body);
+            postDAO.save(tosave);
+            return "you updated post";
+    }
 
 
-        System.err.println("Deleting:");
-        System.err.println("getId " + post.getId());
-        System.err.println("getTitle " + post.getTitle());
-        System.err.println("getCourse " + post.getBody());
-        postDAO.deleteById(post.getId());
-        postDAO.findAll();
 
-        return "posts/index";
+    @PostMapping("/posts/{id}/delete")
+    @ResponseBody
+    public String DeletePost(@PathVariable long id) {
+        postDAO.deleteById(id);
+        return "Ypu delete post";
 
     }
 

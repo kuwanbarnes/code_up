@@ -14,14 +14,14 @@
 <main class="container">
     <div class="post">
 
-        <form action="/posts" method="post">
 
-            <h1 th:text="${post.title}"></h1>
-            <p th:text="${post.body}"></p>
-            <p th:text="${post.id}" hidden></p>
 
-            <button type="submit" name="delete" id= "delete"  >delete</button>
-            <button type="submit" name="edit" id= "edit"  >delete</button>
+                <h1 th:text="${post.title}"></h1>
+                <p th:text="${post.body}"></p>
+                <p th:text="${post.id}" hidden></p>
+        <form th:action="${'/post/'+post.id+'/delete'}" method="POST">
+            <button type="submit" name="delete" id= "delete" th:value="${post.id}"  >delete</button>
+
 
         </form>
     </div>

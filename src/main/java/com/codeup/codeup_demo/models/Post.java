@@ -11,7 +11,7 @@ public class Post {
     private Long id;
 
 
-@Column(length = 225,nullable = false)
+@Column( length = 225,nullable = false)
     private String title;
 
 @Column(columnDefinition = "TEXT",length = 3000,nullable = false)
