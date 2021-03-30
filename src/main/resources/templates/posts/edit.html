@@ -4,11 +4,15 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/partials ::head">
+<head th:replace="fragments/partials ::main-head('Update Post')">
     <meta charset="UTF-8">
     <title>Update Ad</title>
 </head>
-<body>
+
+<nav th:replace="fragments/partials:: mainNav">
+
+</nav>
+
 <h6>View individual Post</h6>
 
 <main class="container">
@@ -31,5 +35,6 @@
         </form>
     </div>
 </main>
+<body th:include="fragments/partials::body">
 </body>
 </html>
