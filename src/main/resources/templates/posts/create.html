@@ -6,14 +6,15 @@
     <title>delete ad</title>
 </head>
 <body>
+<h2>Create Post</h2>
 
         <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
-            <h2>Create Post</h2>
+
 <br>
 
             <br>
-                Title
-                <input th:field="*{title}">
+            Title
+            <input th:field="*{title}">
             <br>
             Body
             <input th:field="*{body}">

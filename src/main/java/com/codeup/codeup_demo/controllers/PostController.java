@@ -71,14 +71,17 @@ private  final UserRepo userDAO;
     @GetMapping(path = "/posts/{id}/update")
     public String updatePost(@PathVariable Long id ,Model model){
         Post postfromdb=postDAO.getOne(id);
-        model.addAttribute("oldPost",postfromdb);
+
+        model.addAttribute("post",postfromdb);
         return "posts/edit";
     }
     @PostMapping(path = "/posts/{id}/update")
     @ResponseBody
-        public String updatePostForm(@PathVariable Long id ,@RequestParam("post_title")String title,@RequestParam("post_body")String body) {
-            Post  tosave = new Post(id,title,body);
-            postDAO.save(tosave);
+        public String updatePostForm(@PathVariable Long id ,@ModelAttribute Post post) {
+            User user= userDAO.getOne(2L);
+            post.setId(id);
+            post.setOwner(user);
+            postDAO.save(post);
             return "you updated post";
     }
 
