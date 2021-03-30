@@ -51,18 +51,20 @@ private  final UserRepo userDAO;
     }
 
     @GetMapping("/posts/create")
-
-    public String postViewForm() {
+    public String postViewForm(Model model) {
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
+
+
     @PostMapping("/posts/create")
  @ResponseBody
-    public String createPostForm(@RequestParam("post_title")String title,@RequestParam("post_body")String body) {
+    public String createPostForm(@ModelAttribute Post post) {
 
         User user= userDAO.getOne(2L);
-        Post  tosave = new Post(title,body);
-        tosave.setOwner(user);
-        postDAO.save(tosave);
+
+        post.setOwner(user);
+        postDAO.save(post);
         return "post created";
     }
 
