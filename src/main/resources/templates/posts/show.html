@@ -4,23 +4,24 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/partials ::head">
-    <meta charset="UTF-8">
-    <title>Post</title>
+<head th:include="fragments/header ::head">
+
+<title>Individual post</title>
 </head>
 <body>
 <h6>View individual Post</h6>
-
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
 <main class="container">
     <div class="post">
 
 
 
-                <h1 th:text="${post.title}"></h1>
-                <p th:text="${post.body}"></p>
-        <p>Contact me at <span th:text="${post.owner.email}"></span></p>
+                <h1 th:text="${post.title}" class="card-title"></h1>
+                <p th:text="${post.body}" class="card-text"></p>
+        <p>Contact me at <span th:text="${post.owner.email}"></span> </p>
     </div>
-    </div>
+
         <form th:action="${'/posts/'+ post.id +'/delete'}" method="POST">
             <button type="submit"  value="delete post" >delete</button>
 
@@ -28,5 +29,7 @@
         </form>
 
 </main>
+    </div>
+</div>
 </body>
 </html>

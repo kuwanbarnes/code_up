@@ -1,18 +1,23 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="fragments/partials ::head">
+<head th:replace="fragments/header ::head">
     <meta charset="UTF-8">
     <title>delete ad</title>
 </head>
 <body>
+<h2>Create Post</h2>
 
-        <form action="/posts/create" method="post">
-            <h2>Create Post</h2>
+        <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+
 <br>
-            <label for="title">Title</label><input type="text" name ="post_title" id="title">
+
             <br>
-            <label for="body">Body</label><input type="text" name ="post_body" id="body">
+            Title
+            <input th:field="*{title}">
+            <br>
+            Body
+            <input th:field="*{body}">
 
 
             <!--            <p th:text="${post.body}"></p>-->

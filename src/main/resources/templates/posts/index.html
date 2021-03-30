@@ -2,7 +2,7 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/partials :: head">
+<head th:replace="fragments/header ::head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -11,13 +11,16 @@ show all post
 
 <main class="container">
     <div class="post" th:each="post: ${posts}">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
 
 
-
-        <h1 th:text="${post.title}"></h1>
-        <p th:text="${post.body}"></p>
-
+        <h1 th:text="${post.title}" class="card-title"></h1>
+        <p th:text="${post.body}" class="card-text"></p>
+            </div>
+        </div>
     </div>
 </main>
+
 </body>
 </html>
