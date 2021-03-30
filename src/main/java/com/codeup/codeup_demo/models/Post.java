@@ -18,8 +18,10 @@ public class Post {
 @Column(columnDefinition = "TEXT",length = 3000,nullable = false)
     private String body;
 
-@OneToOne
+@ManyToOne
+@JoinColumn (name = "user_id")
     private User owner;
+
     public Post(){}
 
     public Post(String title, String body) {

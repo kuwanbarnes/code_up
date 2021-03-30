@@ -1,6 +1,7 @@
 package com.codeup.codeup_demo.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -17,6 +18,8 @@ public class User {
     @Column(name = "password")
     private String password;
 
+@OneToMany(cascade = CascadeType.ALL,mappedBy = "owner")
+    private List<Post> post;
 
     public User(String userName, String password, String email) {
         this.userName = userName;
@@ -38,6 +41,14 @@ public class User {
 
     public Long getId() {
         return id;
+    }
+
+    public List<Post> getPost() {
+        return post;
+    }
+
+    public void setPost(List<Post> post) {
+        this.post = post;
     }
 
     public void setId(Long id) {
