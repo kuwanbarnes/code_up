@@ -19,7 +19,7 @@
     <div class="post">
 
 
-        <form th:action="@{'/posts/'+ ${post.id} +'/update'}" th:method="post" th:object="${post}">
+        <form th:action="@{'/posts/'+ ${post.id} +'/edit'}" th:method="post" th:object="${post}">
 
             <label>
                 Title

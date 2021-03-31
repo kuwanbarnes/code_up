@@ -68,21 +68,20 @@ private  final UserRepo userDAO;
         return "redirect:/posts";
     }
 
-    @GetMapping(path = "/posts/{id}/update")
+    @GetMapping(path = "/posts/{id}/edit")
     public String updatePost(@PathVariable Long id ,Model model){
-        Post postfromdb=postDAO.getOne(id);
 
-        model.addAttribute("post",postfromdb);
+        model.addAttribute("post",postDAO.getOne(id));
         return "posts/edit";
     }
-    @PostMapping(path = "/posts/{id}/update")
-    @ResponseBody
+    @PostMapping(path = "/posts/{id}/edit")
+
         public String updatePostForm(@PathVariable Long id ,@ModelAttribute Post post) {
             User user= userDAO.getOne(2L);
             post.setId(id);
             post.setOwner(user);
             postDAO.save(post);
-            return "you updated post";
+            return "redirect:/posts";
     }
 
 
