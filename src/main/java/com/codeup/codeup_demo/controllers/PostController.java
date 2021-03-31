@@ -58,14 +58,14 @@ private  final UserRepo userDAO;
 
 
     @PostMapping("/posts/create")
- @ResponseBody
+
     public String createPostForm(@ModelAttribute Post post) {
 
         User user= userDAO.getOne(2L);
 
         post.setOwner(user);
         postDAO.save(post);
-        return "post created";
+        return "redirect:/posts";
     }
 
     @GetMapping(path = "/posts/{id}/update")
