@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:if="${post.id == null}">
-    <head th:replace="fragments/header :: head()"></head>
+    <head th:replace="fragments/header :: head('create post')"></head>
 </th:block>
 
 
 <th:block th:unless="${post.id == null}">
-    <head th:replace="fragments/header :: head"></head>
+    <head th:replace="fragments/header :: head('edit post')"></head>
 </th:block>
 
 <body>

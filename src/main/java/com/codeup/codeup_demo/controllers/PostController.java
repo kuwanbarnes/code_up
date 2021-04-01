@@ -78,7 +78,7 @@ private  final UserRepo userDAO;
     public String updatePost(@PathVariable Long id ,Model model){
 
         model.addAttribute("post",postDAO.getOne(id));
-        return "posts/edit";
+        return "posts/create";
     }
     @PostMapping(path = "/posts/{id}/edit")
 
