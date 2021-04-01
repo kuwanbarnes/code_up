@@ -9,8 +9,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
 
     @Column(name = "email")
     private String email;
@@ -21,17 +28,28 @@ public class User {
 @OneToMany(cascade = CascadeType.ALL,mappedBy = "owner")
     private List<Post> post;
 
-    public User(String userName, String password, String email) {
-        this.userName = userName;
+    public User(String username, String password,String firstName, String lastName, String email) {
+        this.username = username;
         this.password = password;
         this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+
     }
 
-    public User(Long id, String userName, String password, String email) {
+    public User(Long id, String username, String password,String firstName, String lastName, String email) {
         this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
 
@@ -55,12 +73,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -77,5 +95,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

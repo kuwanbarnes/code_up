@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title></title>
 </head>
 <body>
 
 <nav th:fragment="mainNav" class="nav navbar">
     <ul>
-        <li><a href="/roll-dice">Help</a></li>
+        <li><a href="">Help</a></li>
         <li><a href="#">About</a></li>
+        <li>
+            <form th:action="@{/logout}" th:method="post">
+                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+            </form>
+        </li>
 <!--        <li><a href="#" th:text="${day}"></a></li>-->
     </ul>
 </nav>

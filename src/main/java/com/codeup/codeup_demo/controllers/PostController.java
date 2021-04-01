@@ -4,7 +4,10 @@ import com.codeup.codeup_demo.models.Post;
 import com.codeup.codeup_demo.models.User;
 import com.codeup.codeup_demo.repo.PostRepository;
 import com.codeup.codeup_demo.repo.UserRepo;
+import com.codeup.codeup_demo.services.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +24,8 @@ public class PostController {
 //    public PostController(PostRepository postDao){
 //        this.postDao = postDao;
 //    }
+    @Autowired
+    private EmailService emailService;
     private final PostRepository postDAO;
 private  final UserRepo userDAO;
     public PostController(PostRepository postDAO,UserRepo userDAO){
@@ -61,10 +66,10 @@ private  final UserRepo userDAO;
 
     public String createPostForm(@ModelAttribute Post post) {
 
-        User user= userDAO.getOne(2L);
-
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setOwner(user);
-        postDAO.save(post);
+        Post savePost= postDAO.save(post);
+        emailService.prepareAndSend(savePost, "new Post","hey where are u");
         return "redirect:/posts";
     }
 
@@ -77,7 +82,7 @@ private  final UserRepo userDAO;
     @PostMapping(path = "/posts/{id}/edit")
 
         public String updatePostForm(@PathVariable Long id ,@ModelAttribute Post post) {
-            User user= userDAO.getOne(2L);
+            User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             post.setId(id);
             post.setOwner(user);
             postDAO.save(post);
