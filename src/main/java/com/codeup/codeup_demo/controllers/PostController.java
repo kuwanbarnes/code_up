@@ -39,6 +39,7 @@ private  final UserRepo userDAO;
     public String SeeAllPostPage(Model model) {
       List<Post> postFromDb= postDAO.findAll();
         model.addAttribute("posts",postFromDb);
+
         return "posts/index";
     }
     @PostMapping("/posts")

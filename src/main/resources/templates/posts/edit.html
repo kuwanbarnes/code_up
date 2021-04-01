@@ -1,47 +1,47 @@
 
 
 
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:include="fragments/header ::head">
-    <meta charset="UTF-8">
-    <title>Update Ad</title>
-</head>
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head th:include="fragments/header ::head">-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Update Ad</title>-->
+<!--</head>-->
 
-<nav th:replace="fragments/partials:: mainNav">
+<!--<nav th:replace="fragments/partials:: mainNav">-->
 
-</nav>
+<!--</nav>-->
 
-<h6>View individual Post</h6>
-<body>
-<main class="container">
-    <div class="post">
-
-
-        <form th:action="@{'/posts/'+ ${post.id} +'/edit'}" th:method="post" th:object="${post}">
-
-            <label>
-                Title
-                <input th:field="*{title}" >
-            </label>
-<br>
-            <br>
-            <label>
-                Body
-                <input th:field="*{body}" >
-            </label>
-<br>
-            <!--            <label for="post.id">post.ID</label>-->
-<!--            <input type="text" name ="post.id" id="post.id">-->
-<!--            <p th:text="${post.body}"></p>-->
-<!--            <p th:text="${post.id}" hidden></p>-->
+<!--<h6>View individual Post</h6>-->
+<!--<body>-->
+<!--<main class="container">-->
+<!--    <div class="post">-->
 
 
-            <button type="submit"  >edit</button>
+<!--        <form th:action="@{'/posts/'+ ${post.id} +'/edit'}" th:method="post" th:object="${post}">-->
 
-        </form>
-    </div>
-</main>
-</body>
-</html>
+<!--            <label>-->
+<!--                Title-->
+<!--                <input th:field="*{title}" >-->
+<!--            </label>-->
+<!--<br>-->
+<!--            <br>-->
+<!--            <label>-->
+<!--                Body-->
+<!--                <input th:field="*{body}" >-->
+<!--            </label>-->
+<!--<br>-->
+<!--            &lt;!&ndash;            <label for="post.id">post.ID</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="text" name ="post.id" id="post.id">&ndash;&gt;-->
+<!--&lt;!&ndash;            <p th:text="${post.body}"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;            <p th:text="${post.id}" hidden></p>&ndash;&gt;-->
+
+
+<!--            <button type="submit"  >edit</button>-->
+
+<!--        </form>-->
+<!--    </div>-->
+<!--</main>-->
+<!--</body>-->
+<!--</html>-->
