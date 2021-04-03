@@ -6,6 +6,6 @@ nav{
     background: azure;
 }
 .card-body{
-    background-color: darkgray;
-    backdrop-filter: drop-shadow(16px 3px);
+    background-color: lightgray;
+
 }
