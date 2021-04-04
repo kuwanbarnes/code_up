@@ -1,6 +1,7 @@
 package com.codeup.codeup_demo.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -17,6 +18,9 @@ public class Post {
 
 @Column(columnDefinition = "TEXT",length = 3000,nullable = false)
     private String body;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "image")
+    private List<Image> images;
 
 @ManyToOne
 @JoinColumn (name = "owner_id")
