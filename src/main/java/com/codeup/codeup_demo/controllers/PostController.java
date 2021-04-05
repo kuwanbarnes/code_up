@@ -69,7 +69,7 @@ private  final UserRepo userDAO;
 
     @PostMapping("/posts/create")
 
-    public String createPostForm(@ModelAttribute Post post,@RequestParam(name = "image0")String image0) {
+    public String createPostForm(@ModelAttribute Post post) {
 
         User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 

@@ -3,9 +3,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head th:replace="fragments/header ::head('All Post')">
+<head th:replace="fragments/header ::head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Show all post</title>
 </head>
 <body>
 <nav th:replace="fragments/navbar ::mainNav">
@@ -21,11 +21,12 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 </div>
 
-show all post
+
 <br>
 <br>
 
 <main class="container ">
+    <h1>Latest Posts</h1>
     <div class="d-flex flex-wrap justify-content-evenly">
     <div class="post" th:each="post: ${posts}">
 
