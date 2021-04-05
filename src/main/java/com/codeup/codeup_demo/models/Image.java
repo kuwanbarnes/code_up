@@ -9,7 +9,7 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, columnDefinition = "text")
+    @Column(nullable = true, columnDefinition = "text")
     private String imagePath;
 
     @ManyToOne

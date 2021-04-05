@@ -1,5 +1,6 @@
 package com.codeup.codeup_demo.controllers;
 
+import com.codeup.codeup_demo.models.Image;
 import com.codeup.codeup_demo.models.Post;
 import com.codeup.codeup_demo.models.User;
 
@@ -68,7 +69,7 @@ private  final UserRepo userDAO;
 
     @PostMapping("/posts/create")
 
-    public String createPostForm(@ModelAttribute Post post) {
+    public String createPostForm(@ModelAttribute Post post,@RequestParam(name = "image0")String image0) {
 
         User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
