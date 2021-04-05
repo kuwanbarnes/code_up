@@ -19,7 +19,12 @@ public class Post {
 @Column(columnDefinition = "TEXT",length = 3000,nullable = false)
     private String body;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "image")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="post_images",
+            joinColumns={@JoinColumn(name="posts_id")},
+            inverseJoinColumns={@JoinColumn(name="images_id")}
+    )
     private List<Image> images;
 
 @ManyToOne

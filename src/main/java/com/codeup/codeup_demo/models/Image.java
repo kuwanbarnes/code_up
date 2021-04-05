@@ -37,9 +37,8 @@ public class Image {
         this.image = image;
     }
 
-    @ManyToOne
-    @JoinColumn (name = "image_id")
-    private User owner;
+    @ManyToMany(mappedBy = "images")
+    private List<Post> postList;
 }
 
 
