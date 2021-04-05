@@ -1,8 +1,8 @@
 package com.codeup.codeup_demo.controllers;
 
-import com.codeup.codeup_demo.models.Image;
 import com.codeup.codeup_demo.models.Post;
 import com.codeup.codeup_demo.models.User;
+
 import com.codeup.codeup_demo.repo.PostRepository;
 import com.codeup.codeup_demo.repo.UserRepo;
 import com.codeup.codeup_demo.services.EmailService;
@@ -29,9 +29,11 @@ public class PostController {
     private EmailService emailService;
     private final PostRepository postDAO;
 private  final UserRepo userDAO;
+
     public PostController(PostRepository postDAO,UserRepo userDAO){
         this.postDAO = postDAO;
         this.userDAO= userDAO;
+
     }
 
 //    List<Post> post =new ArrayList<>();
@@ -66,9 +68,10 @@ private  final UserRepo userDAO;
 
     @PostMapping("/posts/create")
 
-    public String createPostForm(@ModelAttribute Post post, @ModelAttribute Image image) {
+    public String createPostForm(@ModelAttribute Post post) {
 
         User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         post.setOwner(user);
         Post savePost= postDAO.save(post);
         emailService.prepareAndSend(savePost, "new Post","hey where are u");
