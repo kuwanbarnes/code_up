@@ -40,7 +40,7 @@
 
 <th:block th:unless="${post.id == null}">
 
-    <form th:action="@{'/posts/'+ ${post.id} +'/edit'}" method="post" th:object="${post}">
+    <form th:action="@{'/posts/'+ ${post.id} +'/edit'}" method="post" th:object="${post},${}">
 
         <h2>Edit Post Form</h2>
 
@@ -53,6 +53,9 @@
 
         <label>body</label>
         <input th:field="*{body}" type="text">
+
+        <label>Image</label>
+        <input th:field="*{image}" type="text">
 
         <br>
 
