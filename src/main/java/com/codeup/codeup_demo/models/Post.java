@@ -19,7 +19,12 @@ public class Post {
 @Column(columnDefinition = "TEXT",length = 3000,nullable = false)
     private String body;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "image")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="post_images",
+            joinColumns={@JoinColumn(name="posts_id")},
+            inverseJoinColumns={@JoinColumn(name="images_id")}
+    )
     private List<Image> images;
 
 @ManyToOne
@@ -32,6 +37,7 @@ public class Post {
         this.title = title;
         this.body = body;
     }
+
     public Post(Long id,String title, String body) {
         this.id=id;
         this.title = title;
@@ -76,5 +82,11 @@ public class Post {
         this.id = id;
     }
 
+    public List<Image> getImages() {
+        return images;
+    }
 
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
 }

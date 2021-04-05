@@ -26,10 +26,36 @@
         <input th:field="*{title}" type="text">
 
         <br>
-
+        <br>
+        <br>
         <label >body</label>
         <input th:field="*{body}" type="text">
-
+        <br>
+        <br>
+        <br>
+        <label>Image</label>
+        <input id=" img_src0" type="text" width="100" height="auto">
+        <br>
+        <br>
+        <br>
+        <label>Image</label>
+        <input id=" img_src1" type="text" width="100" height="auto">
+        <br>
+        <br>
+        <br>
+        <label>Image</label>
+        <input id=" img_src2" type="text" width="100" height="auto">
+        <br>
+        <br>
+        <br>
+        <label>Image</label>
+        <input id=" img_src3" type="text" width="100" height="auto">
+        <br>
+        <br>
+        <br>
+        <label>Image</label>
+        <input id=" img_src4" type="text" width="100" height="auto">
+        <br>
         <br>
 
         <input type="submit" value="create post">
@@ -40,7 +66,7 @@
 
 <th:block th:unless="${post.id == null}">
 
-    <form th:action="@{'/posts/'+ ${post.id} +'/edit'}" method="post" th:object="${post}">
+    <form th:action="@{'/posts/'+ ${post.id} +'/edit'}" method="post" th:object="${post}" >
 
         <h2>Edit Post Form</h2>
 
@@ -53,6 +79,8 @@
 
         <label>body</label>
         <input th:field="*{body}" type="text">
+
+
 
         <br>
 
