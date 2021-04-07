@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
+    Post findByTitle(String post_to_be_deleted);
 
 //    List<Post>findByTitleEquals(String titleToSearchFor);
 //    List<Post>findById(int id);

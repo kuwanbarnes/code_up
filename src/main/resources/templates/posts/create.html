@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:if="${post.id == null}">
-    <head th:replace="fragments/header :: head('create post')"></head>
+    <head th:replace="fragments/header :: head"></head>
 </th:block>
 
 
 <th:block th:unless="${post.id == null}">
-    <head th:replace="fragments/header :: head('edit post')"></head>
+    <head th:replace="fragments/header :: head"></head>
 </th:block>
 
 <body>
@@ -34,29 +34,29 @@
         <br>
         <br>
         <label>Image url: </label>
-        <input id=" img_src0" type="text" width="100" height="auto">
+        <input id="img_src0" name="img_src0" type="text" width="100" height="auto">
         <br>
         <br>
         <br>
         <label>Image url: </label>
         <input id=" img_src1" type="text" width="100" height="auto">
-        <br>
-        <br>
-        <br>
-        <label>Image url: </label>
-        <input id=" img_src2" type="text" width="100" height="auto">
-        <br>
-        <br>
-        <br>
-        <label>Image url:  </label>
-        <input id=" img_src3" type="text" width="100" height="auto">
-        <br>
-        <br>
-        <br>
-        <label>Image url: </label>
-        <input id=" img_src4" type="text" width="100" height="auto">
-        <br>
-        <br>
+<!--        <br>-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <label>Image url: </label>-->
+<!--        <input id=" img_src2" type="text" width="100" height="auto">-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <label>Image url:  </label>-->
+<!--        <input id=" img_src3" type="text" width="100" height="auto">-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <label>Image url: </label>-->
+<!--        <input id=" img_src4" type="text" width="100" height="auto">-->
+<!--        <br>-->
+<!--        <br>-->
 
         <input type="submit" value="create post">
 

@@ -50,6 +50,14 @@ public class Post {
         this.owner = owner;
     }
 
+    public Post(Long id, String title, String body, List<Image> images, User owner) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.images = images;
+        this.owner = owner;
+    }
+
     public User getOwner() {
         return owner;
     }

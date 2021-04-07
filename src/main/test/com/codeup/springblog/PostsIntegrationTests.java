@@ -64,7 +64,7 @@ public class PostsIntegrationTests {
             testUser = userDao.save(newUser);
         }
 
-        // Throws a Post request to /login and expect a redirection to the Ads index page after being logged in
+        // Throws a Post request to /login and expect a redirection to the Posts index page after being logged in
         httpSession = this.mvc.perform(post("/login").with(csrf())
                 .param("username", "testUser")
                 .param("password", "pass"))
@@ -75,7 +75,7 @@ public class PostsIntegrationTests {
                 .getSession();
     }
     @Test
-    public void contextLoads() {
+    public void contextLoPosts() {
         // Sanity Test, just to make sure the MVC bean is working
         assertNotNull(mvc);
     }
@@ -87,23 +87,27 @@ public class PostsIntegrationTests {
     }
     @Test
     public void testCreatePost() throws Exception {
-        // Makes a Post request to /ads/create and expect a redirection to the Ad
+        // Makes a Post request to /Posts/create and expect a redirection to the Post
         this.mvc.perform(
                 post("/posts/create").with(csrf())
                         .session((MockHttpSession) httpSession)
-                        // Add all the required parameters to your request like this
+                        // Postd all the required parameters to your request like this
                         .param("title", "test")
-                        .param("body", "for sale"))
+                        .param("body", "for sale")
+    .param("img_src0", "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSpcceRUG3NVjbEJf8b-9aFXsaUmQwEC0u_ULFssCvy_Xf1LPQU8I2WOWqkNcM3Kn12ELDwUUIBvA&usqp=CAc")
+                .param("img_src1", "https://images-na.ssl-images-amazon.com/images/I/71Ug9Bzu-YL._AC_SL1024_.jpg")
+        )
+
                 .andExpect(status().is3xxRedirection());
 
     }
     @Test
-    public void testShowAd() throws Exception {
+    public void testShowPost() throws Exception {
 
-        // get the first add
+        // get the first Postd
         Post existingPost = postDao.findAll().get(0);
 
-        // Makes a Get request to /ads/{id} and expect a redirection to the Ad show page
+        // Makes a Get request to /Posts/{id} and expect a redirection to the Post show page
         this.mvc.perform(get("/posts/" + existingPost.getId()))
                 .andExpect(status().isOk())
                 // Test the dynamic content of the page
@@ -114,7 +118,7 @@ public class PostsIntegrationTests {
     public void testPostsIndex() throws Exception {
         Post existingPost = postDao.findAll().get(0);
 
-        // Makes a Get request to /ads and verifies that we get some of the static text of the ads/index.html template and at least the title from the first Ad is present in the template.
+        // Makes a Get request to /Posts and verifies that we get some of the static text of the Posts/index.html template and at least the title from the first Post is present in the template.
         this.mvc.perform(get("/posts"))
                 .andExpect(status().isOk())
                 // Test the static content of the page d
@@ -124,10 +128,10 @@ public class PostsIntegrationTests {
     }
     @Test
     public void testEditPost() throws Exception {
-        // Gets the first Ad for tests purposes
+        // Gets the first Post for tests purposes
         Post existingPost = postDao.findAll().get(0);
 
-        // Makes a Post request to /ads/{id}/edit and expect a redirection to the Ad show page
+        // Makes a Post request to /Posts/{id}/edit and expect a redirection to the Post show page
         this.mvc.perform(
                 post("/posts/" + existingPost.getId() + "/edit").with(csrf())
                         .session((MockHttpSession) httpSession)
@@ -135,7 +139,7 @@ public class PostsIntegrationTests {
                         .param("body", "edited body"))
                 .andExpect(status().is3xxRedirection());
 
-        // Makes a GET request to /ads/{id} and expect a redirection to the Ad show page
+        // Makes a GET request to /Posts/{id} and expect a redirection to the Post show page
         this.mvc.perform(get("/posts/" + existingPost.getId()))
                 .andExpect(status().isOk())
                 // Test the dynamic content of the page
@@ -143,23 +147,24 @@ public class PostsIntegrationTests {
                 .andExpect(content().string(containsString("edited body")));
     }
     @Test
-    public void testDeleteAd() throws Exception {
-        // Creates a test Ad to be deleted
+    public void testDeletePost() throws Exception {
+        // Creates a test Post to be deleted
         this.mvc.perform(
-                post("/ads/create").with(csrf())
+                post("/posts/create").with(csrf())
                         .session((MockHttpSession) httpSession)
-                        .param("title", "ad to be deleted")
-                        .param("description", "won't last long"))
+                        .param("title", "Post to be deleted")
+                        .param("body", "won't last long"))
+
                 .andExpect(status().is3xxRedirection());
 
-        // Get the recent Ad that matches the title
-        Ad existingAd = adsDao.findByTitle("ad to be deleted");
+        // Get the recent Post that matches the title
+        Post existingPost = postDao.findByTitle("Post to be deleted");
 
-        // Makes a Post request to /ads/{id}/delete and expect a redirection to the Ads index
+        // Makes a Post request to /Posts/{id}/delete and expect a redirection to the Posts index
         this.mvc.perform(
-                post("/ads/" + existingAd.getId() + "/delete").with(csrf())
+                post("/posts/" + existingPost.getId() + "/delete").with(csrf())
                         .session((MockHttpSession) httpSession)
-                        .param("id", String.valueOf(existingAd.getId())))
+                        .param("id", String.valueOf(existingPost.getId())))
                 .andExpect(status().is3xxRedirection());
     }
 }

@@ -13,14 +13,15 @@
 <div class="card" style="width: 18rem;">
     <div class="card-body">
 <main class="container">
-    <div class="post">
+<!--    <div class="post" th:each="image:${post.getImages()}">-->
 
 
+<!--        <img th:src="${post.getImages().get(0)}" class="card-img-top"  alt="..."/>-->
 
                 <h1 th:text="${post.title}" class="card-title"></h1>
                 <p th:text="${post.body}" class="card-text"></p>
         <p>Contact me at <span th:text="${post.owner.email}"></span> </p>
-    </div>
+<!--    </div>-->
 
         <form th:action="${'/posts/'+ post.id +'/delete'}" method="POST">
             <button type="submit"  value="delete post" >delete</button>
