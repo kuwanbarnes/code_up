@@ -1,11 +1,18 @@
 body{
 
-    background: #f1cd96;
+    background: rgba(189,255,165,0.76);
 }
 nav{
     background: azure;
 }
-.card-body{
-    background-color: lightgray;
+.card-body {
+    background-color: lavender;
+    outline-color: darkblue;
+}
+#delete{
+    background-color: red;
+}
 
+#delete{
+    background-color: red;
 }
