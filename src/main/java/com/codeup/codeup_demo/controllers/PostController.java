@@ -4,16 +4,15 @@ import com.codeup.codeup_demo.models.Image;
 import com.codeup.codeup_demo.models.Post;
 import com.codeup.codeup_demo.models.User;
 
+import com.codeup.codeup_demo.repo.ImageRepo;
 import com.codeup.codeup_demo.repo.PostRepository;
 import com.codeup.codeup_demo.repo.UserRepo;
 import com.codeup.codeup_demo.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +29,13 @@ public class PostController {
     private EmailService emailService;
     private final PostRepository postDAO;
 private  final UserRepo userDAO;
+private final ImageRepo imageRepo;
 
-    public PostController(PostRepository postDAO,UserRepo userDAO){
+    public PostController(PostRepository postDAO, UserRepo userDAO, ImageRepo imageRepo){
         this.postDAO = postDAO;
         this.userDAO= userDAO;
 
+        this.imageRepo = imageRepo;
     }
 
 //    List<Post> post =new ArrayList<>();
@@ -69,12 +70,20 @@ private  final UserRepo userDAO;
 
     @PostMapping("/posts/create")
 
-    public String createPostForm(@ModelAttribute Post post,@RequestParam(name = "image0")String image0) {
+    public String createPostForm(@ModelAttribute Post post) {
 
         User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         post.setOwner(user);
+//        Image imagesToSave= new Image(image0);
+//        Image image1ToSave= new Image(image1);
+//        imagesToSave.setPost(post);
+//        image1ToSave.setPost(post);
+//      post.setImages(imagesToSave);
+
         Post savePost= postDAO.save(post);
+//        imageRepo.save(imagesToSave);
+//        imageRepo.save(image1ToSave);
         emailService.prepareAndSend(savePost, "new Post","hey where are u");
         return "redirect:/posts";
     }
@@ -98,10 +107,10 @@ private  final UserRepo userDAO;
 
 
     @PostMapping("/posts/{id}/delete")
-    @ResponseBody
+
     public String DeletePost(@PathVariable Long id) {
         postDAO.deleteById(id);
-        return "You delete post";
+        return "redirect:/posts";
 
     }
 

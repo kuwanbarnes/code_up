@@ -30,6 +30,7 @@ public class Image {
         this.post = post;
     }
 
+
     public long getId() {
         return id;
     }
