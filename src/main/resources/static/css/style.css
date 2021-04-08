@@ -6,6 +6,10 @@ nav{
     background: azure;
 }
 .card-body{
-    background-color: lightgray;
+    background-color: lavender;
+outline-color: darkblue;
+}
 
+#delete{
+    background-color: red;
 }
